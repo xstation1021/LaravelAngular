@@ -1,0 +1,28 @@
+<div class="group">
+        <div class="success" ng-show="showRecipeSuccess">Successfully Updated</div>
+       <div class="error" ng-show="showRecipeError">Error Occured</div>
+    <form name="recipe_form" ng-submit="recipe_form && updateRecipe()">
+           <label>Name</label><br>
+           <input type="text" ng-model="recipe.name" requred><br>
+           <label>Prep Time</label><br>
+           <input type="text" ng-model="recipe.prep_time" required><br>
+           <label>Cook Time</label><br>
+           <input type="text" ng-model="recipe.cook_time" required ><br>
+           <label>Service Size</label><br>
+           <input type="text" ng-model="recipe.serving_size" required><br>
+           <label>labelInstructions</label><br>
+           <textarea ng-model="recipe.instructions" required>
+           </textarea><br>
+           <div>Ingredients</div>
+           <div ng-repeat="ingredient in recipe.ingredients">
+           <input type="text" ng-model="ingredient.unit" required>
+           <select ng-model="ingredient.id" ng-options="ingredient.id as ingredient.name for ingredient in ingredients"></select>
+            
+            
+           </div>
+           
+           
+           <button ng-click="addItem()">Add</button>
+           <button type="submit">Submit</button>
+    </form>
+</div>

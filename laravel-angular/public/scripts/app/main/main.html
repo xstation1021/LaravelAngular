@@ -1,0 +1,84 @@
+<div>
+    <div class="group">
+        <p>Recipes</p>
+        <p>: Find Recipe By Code <input type="text" ng-model="codeText"> <button ng-click="searchCode()">Search</button></p>
+         <p>: Find Recipe with ingredients Search <input type="text" ng-model="searchText"> <button ng-click="search()">Search</button></p>
+        <table>
+            <tr>
+                <th>#</th>
+                <th>Name</th>
+                <th>Prep Time</th>
+                <th>Cook Time</th>
+                <th>serving size</th>
+                <th>instructions</th>
+                <th>Action</th>
+
+            </tr>
+            <tr ng-repeat="recipe in recipes">
+                <td>{{$index + 1}}</td>
+                <td>{{recipe.name}}</td>
+                <td>{{recipe.prep_time}}</td>
+                <td>{{recipe.cook_time}}</td>
+                <td>{{recipe.serving_size}}</td>
+                <td>{{recipe.instructions}}</td>
+                <td><a href="#/recipes/{{recipe.id}}">Edit</a></td>
+            </tr>
+        </table>
+    </div>
+    <div class="group">
+       <div class="success" ng-show="showRecipeSuccess">Successfully Added</div>
+       <div class="error" ng-show="showRecipeError">Error Occured</div>
+       
+       <form name="recipe_form" ng-submit="recipe_form && createRecipe()">
+           <label>Name</label><br>
+           <input type="text" ng-model="recipe.name" required><br>
+           <label>Prep Time</label><br>
+           <input type="text" ng-model="recipe.prep_time" required><br>
+           <label>Cook Time</label><br>
+           <input type="text" ng-model="recipe.cook_time" required><br>
+           <label>Service Size</label><br>
+           <input type="text" ng-model="recipe.serving_size" required><br>
+           <label>labelInstructions</label><br>
+           <textarea ng-model="recipe.instructions" required></textarea><br>
+           <button type="submit">Submit</button>
+       </form>
+    </div>
+    <div class="group">
+
+        <p>Ingredients</p>
+        <table>
+            <tr>
+                <th>#</th>
+                <th>Name</th>
+                <th>quantity</th>
+                <th>measure</th>
+
+            </tr>
+            <tr ng-repeat="ingredient in ingredients">
+                <td>{{$index + 1}}</td>
+                <td>{{ingredient.name}}</td>
+                <td>{{ingredient.quantity}}</td>
+                <td>{{ingredient.measure}}</td>
+            </tr>
+        </table>
+    </div>
+    
+    <div class="group">
+       <div class="success" ng-show="showIngredientSuccess">Successfully Added</div>
+       <div class="error" ng-show="showIngredientError">Error Occured
+       <p>
+       {{custom_error}}
+       </p>
+       
+       </div>
+       <form name="createIngredient_form" ng-submit="createIngredient_form && createIngredient()">
+           <label>Name</label><br>
+           <input type="text" ng-model="ingredient.name" required><br>
+           <label>Prep Time</label><br>
+           <input type="text" ng-model="ingredient.quantity" required><br>
+           <label>Cook Time</label><br>
+           <input type="text" ng-model="ingredient.measure" required><br>
+           <button type="submit">Submit</button>
+       </form>
+    </div>
+</div>
