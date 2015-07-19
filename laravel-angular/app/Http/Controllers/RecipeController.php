@@ -14,10 +14,15 @@ class RecipeController extends Controller
         $query = DB::table('recipes')
             ->leftJoin('recipe_ingredients', 'recipes.id', '=', 'recipe_ingredients.recipe_id')
             ->leftJoin('ingredients', 'recipe_ingredients.ingredient_id', '=', 'ingredients.id')
+            ->leftJoin('products', 'products.ingredient_id', '=', 'ingredients.id')
+            ->leftJoin('categories', 'categories.id', '=', 'products.category_id')
+            ->groupBy('recipes.id')
             ->select('recipes.*', 'ingredients.name as iname');
         
         if(!empty($search)){
-            $query->where('ingredients.name', $search);
+            $query->orWhere('recipes.code', $search);
+            $query->orWhere('ingredients.name', $search);
+            $query->orWhere('categories.name', $search);
         }
 
             $data = $query->get();
@@ -78,8 +83,6 @@ class RecipeController extends Controller
     
     public function update(Request $request){
         $recipe = Recipe::find($request->id);
-        
-        
         $recipe->name = $request->name;
         $recipe->prep_time = $request->prep_time;
         $recipe->cook_time = $request->cook_time;

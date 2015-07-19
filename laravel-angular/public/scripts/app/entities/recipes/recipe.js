@@ -9,7 +9,7 @@ angular.module('chicoryApp')
                 
                 views: {
                     'content@': {
-                        templateUrl: 'scripts/app/entities/recipe.html',
+                        templateUrl: 'scripts/app/entities/recipes/recipe.html',
                         controller: 'RecipeController'
                     }
                 },

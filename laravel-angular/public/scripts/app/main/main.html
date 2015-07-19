@@ -1,8 +1,7 @@
 <div>
     <div class="group">
         <p>Recipes</p>
-        <p>: Find Recipe By Code <input type="text" ng-model="codeText"> <button ng-click="searchCode()">Search</button></p>
-         <p>: Find Recipe with ingredients Search <input type="text" ng-model="searchText"> <button ng-click="search()">Search</button></p>
+         <p>: Find Recipe with Recipe Unique number, ingredients or category name Search <input type="text" ng-model="searchText"> <button ng-click="search()">Search</button></p>
         <table>
             <tr>
                 <th>#</th>
@@ -43,6 +42,8 @@
            <button type="submit">Submit</button>
        </form>
     </div>
+    
+    <hr/>
     <div class="group">
 
         <p>Ingredients</p>
@@ -81,4 +82,85 @@
            <button type="submit">Submit</button>
        </form>
     </div>
+    
+    <hr/>
+    <div class="group">
+
+        <p>Products</p>
+        <table>
+            <tr>
+                <th>#</th>
+                <th>Name</th>
+                <th>Brand</th>
+                <th>measure</th>
+                <th>Unit Size</th>
+                <th>Unit Price</th>
+                <th>Ingredient</th>
+                <th>Category</th>
+            </tr>
+            <tr ng-repeat="product in products">
+                <td>{{$index + 1}}</td>
+                <td>{{product.name}}</td>
+                <td>{{product.brand}}</td>
+                <td>{{product.measure}}</td>
+                <td>{{product.unit_size}}</td>
+                <td>{{product.unit_price}}</td>
+                <td>{{product.iname}}</td>
+                <td>{{product.cname}}</td>
+            </tr>
+        </table>
+    </div>
+    
+    <div class="group">
+       <div class="success" ng-show="showProductSuccess">Successfully Added</div>
+       <div class="error" ng-show="showProductError">Error Occured
+       
+       </div>
+       <form name="createProduct_form" ng-submit="createProduct_form && createProduct()">
+           <label>Name</label><br>
+           <input type="text" ng-model="product.name" required><br>
+           <label>Brand</label><br>
+           <input type="text" ng-model="product.brand" required><br>
+           <label>Measure</label><br>
+           <input type="text" ng-model="product.measure" required><br>
+           <label>Unit Size</label><br>
+           <input type="text" ng-model="product.unit_size" required><br>
+           <label>Unit Price</label><br>
+           <input type="text" ng-model="product.unit_price" required><br>
+           <label>Ingredient</label><br>
+           <select required ng-model="product.ingredient_id" ng-options="ingredient.id as ingredient.name for ingredient in ingredients"></select>
+           <br>
+           <label>Category</label><br>
+           <select required ng-model="product.category_id" ng-options="category.id as category.name for category in categories"></select>
+           <br>
+           <button type="submit">Submit</button>
+       </form>
+    </div>
+    <hr/>
+    <div class="group">
+
+        <p>Categories</p>
+        <table>
+            <tr>
+                <th>#</th>
+                <th>Name</th>
+
+            </tr>
+            <tr ng-repeat="category in categories">
+                <td>{{$index + 1}}</td>
+                <td>{{category.name}}</td>
+            </tr>
+        </table>
+        <div class="success" ng-show="showCategorySuccess">Successfully Added</div>
+       <div class="error" ng-show="showCategoryError">Error Occured
+       
+       </div>
+        
+        <form name="createCategory_form" ng-submit="createIngredient_form && createCategory()">
+           <label>Name</label><br>
+           <input type="text" ng-model="category.name" required><br>
+           <button type="submit">Submit</button>
+       </form>
+    </div>
+    
 </div>

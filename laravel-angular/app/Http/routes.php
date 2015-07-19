@@ -27,3 +27,11 @@ Route::put('api/recipes', 'RecipeController@update');
 Route::get('api/ingredients', 'IngredientController@show');
 Route::post('api/ingredients', 'IngredientController@create');
 Route::put('api/ingredients', 'IngredientController@update');
+
+Route::get('api/products', 'ProductController@show');
+Route::post('api/products', 'ProductController@create');
+Route::put('api/products', 'ProductController@update');
+
+Route::get('api/categories', 'CategoryController@show');
+Route::post('api/categories', 'CategoryController@create');
+Route::put('api/categories', 'CategoryController@update');

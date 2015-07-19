@@ -14,11 +14,10 @@
            <textarea ng-model="recipe.instructions" required>
            </textarea><br>
            <div>Ingredients</div>
+           <div>Unit/Ingredient</div>
            <div ng-repeat="ingredient in recipe.ingredients">
            <input type="text" ng-model="ingredient.unit" required>
            <select ng-model="ingredient.id" ng-options="ingredient.id as ingredient.name for ingredient in ingredients"></select>
-            
-            
            </div>
            
            
