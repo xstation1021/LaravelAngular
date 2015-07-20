@@ -10,6 +10,10 @@ angular.module('chicoryApp')
        		$scope.recipe = data;
        });
        
+       Recipe.query({method:"suggest", id:$stateParams.id}).$promise.then(function(data){
+      		$scope.suggestions = data;
+      });
+       
        $scope.updateRecipe = function(){
     	   $scope.showRecipeSuccess = false;
     	   $scope.showRecipeError = false;

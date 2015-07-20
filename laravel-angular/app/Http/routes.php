@@ -23,6 +23,8 @@ Route::get('api/search_code/recipes/{code?}', 'RecipeController@searchByCode');
 Route::post('api/recipes', 'RecipeController@create');
 Route::put('api/recipes', 'RecipeController@update');
 
+Route::get('api/suggest/recipes/{id}', 'RecipeController@suggest');
+
 
 Route::get('api/ingredients', 'IngredientController@show');
 Route::post('api/ingredients', 'IngredientController@create');

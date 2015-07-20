@@ -107,4 +107,18 @@ class RecipeController extends Controller
         }
         echo json_encode(true);exit;
     }
+    
+    public function suggest($id){
+        $data = DB::select("
+                SELECT i.name, p.name, unit_price, unit_size from  recipes r
+                left join recipe_ingredients ri ON ri.recipe_id = r.id
+                left join ingredients i ON i.id = ri.ingredient_id 
+                left join (SELECT * from products order by unit_price/unit_size ) as p
+                ON p.ingredient_id = i.id
+                WHERE r.id = :id
+                group by i.id
+                ",  ['id' => $id]);
+        
+        return $data;
+    }
 }

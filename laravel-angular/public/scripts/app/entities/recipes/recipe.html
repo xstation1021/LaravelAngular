@@ -24,4 +24,24 @@
            <button ng-click="addItem()">Add</button>
            <button type="submit">Submit</button>
     </form>
+    
+    
+    <div class="group">
+        <p>Suggessted/Cheapest Ingredients</p>
+            <table>
+                <tr>
+                    <th>Name</th>
+                    <th>Unit Price</th>
+                    <th>Unit Size</th>
+                </tr>
+                <tr ng-repeat="item in suggestions">
+                    <td>{{item.name}}</td>
+                    <td>{{item.unit_price}}</td>
+                    <td>{{item.unit_size}}</td>
+                </tr>
+         
+            
+            </table>
+        
+    </div>
 </div>
