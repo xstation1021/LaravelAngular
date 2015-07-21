@@ -7,7 +7,7 @@ use App\RecipeIngredient;
 use DB;
 use Illuminate\Http\Request;
 
-class RecipeController extends Controller
+class RecipeController extends ApiController
 {
     public function show($search = null)
     {

@@ -43,6 +43,7 @@
     <script src="scripts/app/main/main.controller.js"></script>
     <script src="scripts/app/entities/recipes/recipe.js"></script>
     <script src="scripts/app/entities/recipes/recipe.controller.js"></script>
+    <script src="scripts/app/error/error.js"></script>
     <script src="scripts/components/recipe/recipe.service.js"></script>
     <script src="scripts/components/ingredient/ingredient.service.js"></script>
     <script src="scripts/components/product/product.service.js"></script>

@@ -22,24 +22,32 @@ angular.module('chicoryApp', ['LocalStorageModule', 'tmh.dynamicLocale', 'pascal
             
         };
     })
-    .factory('authExpiredInterceptor', function ($rootScope, $q, $injector, localStorageService) {
+    .factory('authInterceptor', function ($rootScope, $injector, $q, $location, localStorageService) {
         return {
+            // Add authorization token to headers
+            request: function (config) {
+                config.headers.Authorization = 'Bearer chicory-token' ;
+                return config;
+            },
             responseError: function(response) {
-                    
-                return $q.reject(response);
-            }
+            	if (response.status == 401){
+	            	var $state = $injector.get('$state');
+	            	$state.go('error');
+					
+            	}
+    			return $q.reject(response);
+    		}
         };
     })
     .config(function ($stateProvider, $urlRouterProvider, $httpProvider, $locationProvider, $translateProvider, tmhDynamicLocaleProvider, httpRequestInterceptorCacheBusterProvider) {
 
-      
 
         $urlRouterProvider.otherwise('/');
         
 
-        $httpProvider.interceptors.push('authExpiredInterceptor');
+        $httpProvider.interceptors.push('authInterceptor');
 
-
+        
       
         
     });

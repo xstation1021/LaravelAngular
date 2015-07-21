@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use DB;
 
-class IngredientController extends Controller
+class IngredientController extends ApiController
 {
 
     public function show()

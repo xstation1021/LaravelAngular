@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use DB;
 
-class CategoryController extends Controller
+class CategoryController extends ApiController
 {
 
     public function show()

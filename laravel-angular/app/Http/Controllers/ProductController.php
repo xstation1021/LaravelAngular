@@ -6,7 +6,7 @@ use App\Product;
 use Illuminate\Http\Request;
 use DB;
 
-class ProductController extends Controller
+class ProductController extends ApiController
 {
 
     public function show()
