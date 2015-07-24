@@ -57,10 +57,27 @@ class RecipeController extends ApiController
         
         return $data;
     }
-    
+
+    private function rateLimit(){
+        $data = DB::select("
+            SELECT 
+                SUM(CASE WHEN NOW() > created_at AND created_at > DATE_SUB(NOW(), INTERVAL 1 HOUR) THEN 1 ELSE 0 END) as hour_count
+                , SUM(CASE WHEN NOW() > created_at AND created_at > DATE_SUB(NOW(), INTERVAL 1 DAY) THEN 1 ELSE 0 END) as day_count
+                , SUM(CASE WHEN NOW() > created_at AND created_at > DATE_SUB(NOW(), INTERVAL 1 MONTH) THEN 1 ELSE 0 END) as month_count
+                FROM recipes");
+            if($data['hour_count'] > 100 || $data['day_count'] > 1000  || $data['month_count'] > 100) {
+                return false;
+            }
+            return true;
+    }
     
     
     public function create(Request $request){
+        $rateLimit = $this->rateLimit();
+        if($rateLimit == false){
+            return response('Too Many Requests.', 429);
+        }
+
         $code = "";
         while(true){
             $code = substr(md5(rand()), 0, 7);
